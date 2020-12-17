@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<resources>
+
+    <string name="app_name">Questionario</string>
+
+    <string name="first_question">Como entrenar a tu dragón es del estudio DreamWorks</string>
+
+    <string name="second_question">¿El año que se estrenó Shrek fue el 2000?</string>
+
+    <string name="third_question">En El Dorado, Miguel y Tulio, son españoles</string>
+
+    <string name="fourth_question">El Príncipe de Egipto trata sobre la historia de Moisés</string>
+
+    <string name="fifth_question">En Madagascar, ¿Alex és un león?</string>
+
+    <string name="sixth_question">En Kung Fu Panda, ¿los miembros de "Los **** Furiosos", son 5?</string>
+
+    <string name="seventh_question">Chicken Run es una película de animación Stop Motion</string>
+
+    <string name="eighth_question">El país en el que transcurre toda la película Abominable es China</string>
+
+    <string name="ninth_question">En Spirit el Corcel indomable, el protagonista se hace amigo de un Indio Americano</string>
+
+    <string name="tenth_question">En Como entrenar a tu dragón 2, Hipo tiene un brazo protésico</string>
+
+    <string name="True">Verdadero</string>
+
+    <string name="False">Falso</string>
+
+    <string name="correct_toast">Yay!</string>
+
+    <string name="incorrect_toast">Nope</string>
+
+    <string name="next_button">Siguiente</string>
+
+</resources>
