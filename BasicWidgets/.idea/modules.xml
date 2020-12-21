@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BasicWidgets.iml" filepath="$PROJECT_DIR$/.idea/BasicWidgets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BasicWidgets.iml" filepath="$PROJECT_DIR$/.idea/modules/BasicWidgets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BasicWidgets.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BasicWidgets.app.iml" />
     </modules>
   </component>
 </project>
