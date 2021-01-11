@@ -2,9 +2,11 @@ package com.example.menuexercise;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,9 +43,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-
-        String option = lvItems.getItemAtPosition(position).toString();
-
-        Toast.makeText(getApplicationContext(), "Clicked: ", Toast.LENGTH_SHORT).show();
     }
 }
