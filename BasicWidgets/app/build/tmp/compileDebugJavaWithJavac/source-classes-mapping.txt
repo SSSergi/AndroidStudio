@@ -1,0 +1,4 @@
+com/example/basicwidgets/BuildConfig.java
+ com.example.basicwidgets.BuildConfig
+com/example/basicwidgets/MainActivity.java
+ com.example.basicwidgets.MainActivity

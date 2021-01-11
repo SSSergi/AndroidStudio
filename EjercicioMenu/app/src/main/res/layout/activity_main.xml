@@ -20,6 +20,7 @@
             android:textColor="@color/white"/>
     </RelativeLayout>
 
+
     <ListView
         android:id="@+id/ListViewID"
         android:layout_width="match_parent"
