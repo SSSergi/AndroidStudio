@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">MenuExercise</string>
+    <string name="app_name">Working Containers</string>
+    
+    <string name="menu_title">Hello, I"'"m Lesson 12</string>
+
+    <string name="radio_op"></string>
+
+    <string name="buttons_op"></string>
+
+    <string name="URL_demo_RL_op"></string>
+
+    <string name="Overlap_but_op"></string>
+
+    <string name="URL_demo_TL_op"></string>
+
+    <string name="Scroll_View_op"></string>
 </resources>

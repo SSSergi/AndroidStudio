@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG="MainActivity";
     private static final String KEY_INDEX = "index";
+    private static final int REQUEST_CODE_CHEAT=0;
 
     private Preguntas[] mQuestionBank = new Preguntas[] {
             new Preguntas(R.string.first_question, true),
@@ -90,8 +91,9 @@ public class MainActivity extends AppCompatActivity {
         mCheatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(MainActivity.this, CheatActivity.class);
-                startActivity(intent);
+                boolean answerIsTrue=mQuestionBank[mCurrentIndex].isAnswerTrue();
+                Intent intent=CheatActivity.newIntent(MainActivity.this, answerIsTrue);
+                startActivityForResult(intent, REQUEST_CODE_CHEAT);
             }
         });
 
