@@ -2,10 +2,13 @@ package com.example.menuexercise;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private ListView lvItems;
     private Adaptador adaptador;
+
+    Button holaButt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,5 +48,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+        if(position==1){
+            Intent intent=new Intent(MainActivity.this, ButtonActivity.class);
+            startActivity(intent);
+        }
     }
 }
