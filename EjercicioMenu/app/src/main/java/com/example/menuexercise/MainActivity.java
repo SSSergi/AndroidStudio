@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ListView lvItems;
     private Adaptador adaptador;
 
-    Button holaButt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

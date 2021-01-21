@@ -26,6 +26,7 @@
         android:layout_gravity="center">
 
         <Button
+            android:id="@+id/timebtn"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,17 +37,18 @@
     <LinearLayout
         android:layout_width="70dp"
         android:layout_height="67dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="7dp"
         android:gravity="center"
         android:background="#C8C8C8">
 
         <ImageButton
-            android:id="@+id/imgbtn"
+            android:id="@+id/imgbuton"
             android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:background="#C8C8C8"
-            android:src="@drawable/logocomonware2" />
+            android:src="@drawable/logocomonware2"
+            android:onClick="sendMissage"/>
     </LinearLayout>
 
     <LinearLayout
@@ -55,7 +57,7 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="194dp"
+            android:layout_width="274dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:src="@drawable/logocomonware" />
@@ -69,7 +71,7 @@
         <EditText
             android:id="@+id/textSend"
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
+            android:layout_height="wrap_content"
             android:inputType="text"/>
 
     </LinearLayout>
@@ -80,10 +82,9 @@
 
         <TextView
             android:id="@+id/textListener"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:text="@string/cadena_texto"
-            android:layerType="none"/>
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="20dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -93,7 +94,7 @@
         <CheckBox
             android:id="@+id/checkbox1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="This checkbox is: unchecked"/>
     </LinearLayout>
 
@@ -116,21 +117,21 @@
         <RadioButton
             android:id="@+id/radiobtn1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="Blue"
             android:onClick="onRadiobtnclicked"/>
 
         <RadioButton
             android:id="@+id/radiobtn2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="Red"
             android:onClick="onRadiobtnclicked"/>
 
         <RadioButton
             android:id="@+id/radiobtn3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="Green"
             android:onClick="onRadiobtnclicked"/>
 
