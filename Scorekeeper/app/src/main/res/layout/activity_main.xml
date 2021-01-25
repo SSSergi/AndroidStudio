@@ -22,13 +22,14 @@
 
         <ImageButton
             android:id="@+id/minusbtn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/ic_minus"
             android:contentDescription="Minus Button"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/button_background"/>
 
         <TextView
             android:id="@+id/scoreview1"
@@ -40,13 +41,14 @@
 
         <ImageButton
             android:id="@+id/plusbtn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/ic_plus"
             android:contentDescription="Plus Button"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"/>
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button_background"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -64,13 +66,14 @@
 
         <ImageButton
             android:id="@+id/minusbtn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/ic_minus"
             android:contentDescription="Minus Button"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/button_background"/>
 
         <TextView
             android:id="@+id/scoreview2"
@@ -82,13 +85,14 @@
 
         <ImageButton
             android:id="@+id/plusbtn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/ic_plus"
             android:contentDescription="Plus Button"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"/>
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button_background"/>
     </RelativeLayout>
 
 </LinearLayout>
