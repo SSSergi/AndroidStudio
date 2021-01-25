@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Scorekeeper</string>
+
+    <string name="t1">TEAN 1</string>
+
+    <string name="t2">TEAM 2</string>
+
+    <string name="score1">0</string>
+
+    <string name="score2">0</string>
+</resources>
