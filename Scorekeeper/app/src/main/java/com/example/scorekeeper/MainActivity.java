@@ -39,14 +39,57 @@ public class MainActivity extends AppCompatActivity {
         mMinusBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                increaseScore(v);
+                TextView p1=mTextMark1;
+                decreaseScore(p1);
+            }
+        });
+
+        mPlusBtn1 = (ImageButton) findViewById(R.id.plusbtn1);
+        mPlusBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView p1=mTextMark1;
+                increaseScore(p1);
+            }
+        });
+
+        mMinusBtn2 = (ImageButton) findViewById(R.id.minusbtn2);
+        mMinusBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView p2=mTextMark2;
+                decreaseScore(p2);
+            }
+        });
+
+        mPlusBtn2 = (ImageButton) findViewById(R.id.plusbtn2);
+        mPlusBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView p2=mTextMark2;
+                increaseScore(p2);
             }
         });
     }
 
-    public void increaseScore(View view){
+    public void increaseScore(TextView view){
 
+        String cadena = view.getText().toString();
+        int puntos = Integer.parseInt(cadena);
+        puntos = puntos+1;
+        cadena = Integer.toString(puntos);
+        view.setText(cadena);
+    }
 
+    public void decreaseScore(TextView view){
+
+        String cadena = view.getText().toString();
+        int puntos = Integer.parseInt(cadena);
+        if(puntos>0){
+            puntos = puntos-1;
+            cadena = Integer.toString(puntos);
+            view.setText(cadena);
+        }
     }
 
 
