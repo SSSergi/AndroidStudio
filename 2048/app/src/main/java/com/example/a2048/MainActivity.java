@@ -1,15 +1,25 @@
 package com.example.a2048;
 
 import androidx.annotation.RequiresApi;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+
+import android.util.Log;
+
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.MotionEvent;
+import android.view.View;
+import  android.view.View.OnTouchListener;
+
 import java.util.ArrayList;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     int tablero[][]=new int[4][4];
     ArrayList options=new ArrayList();
@@ -21,18 +31,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fillBoard(tablero);
-        startGame(tablero);/*
+        startGame(tablero);
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[i].length; j++) {
                 System.err.println(" "+tablero[i][j]+"");
             }
-        }*/
-    }
-
-    public static void main(String[] args) {
-        MainActivity m=new MainActivity();
-        //m.startGame(m.tablero);
-        System.err.println("HELLO there");
+        }
     }
 
     /*--CON ESTE MÉTODO LLENO LA MATRIZ DE CEROS, PARA QUE PUEDA OPERAR CON MÁS FACILIDAD QUE NO CON NULLS--*/
@@ -47,30 +51,22 @@ public class MainActivity extends AppCompatActivity {
 
     /*---- GENERADORES DE COORDENADAS ALEATORIOS ----*/
     public int generateX(){
-        double x = Math.random()*(0-3)+4;
+        double x = Math.random()*(0-3)+3;
         long x2 = Math.round(x);
         spawnX = Math.toIntExact(x2);
         return spawnX;
     }
 
     public int generateY(){
-        double y = Math.random()*(0-3)+4;
+        double y = Math.random()*(0-3)+3;
         long y2 = Math.round(y);
         spawnY = Math.toIntExact(y2);
         return spawnY;
     }
     /*------------------------------------------------*/
 
+
     public void addNumber(int[][] tabla){
-        /*for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (tabla[i][j]==0){
-                    options.add(i,j);
-                }
-            }
-        }*/
-
-
         boolean stop=false;
         while (stop==false){
             int x=generateX();
