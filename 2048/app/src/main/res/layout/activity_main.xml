@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <GridLayout
+        android:id="@+id/rejilla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="4"
@@ -19,114 +20,100 @@
         android:layout_marginLeft="40dp"
         android:background="#9E9E9E">
 
-        <ImageView
+        <TextView
             android:id="@+id/c1"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c2"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c3"
             android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c4"
             android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c5"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c6"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c7"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c8"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c9"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c10"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c11"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c12"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c13"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c14"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c15"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/c16"
-            android:src="@drawable/empty_button"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:padding="5dp"/>

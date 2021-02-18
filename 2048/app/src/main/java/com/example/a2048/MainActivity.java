@@ -4,42 +4,63 @@ import androidx.annotation.RequiresApi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
-
-import android.util.Log;
 
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
 import  android.view.View.OnTouchListener;
+import android.widget.GridLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
-    int tablero[][]=new int[4][4];
-    ArrayList options=new ArrayList();
-    int spawnX;
-    int spawnY;
+    private GridLayout casilla;
+    private GestureDetector gesto;
+
+    private int tablero[][]=new int[4][4];
+    private ArrayList options=new ArrayList();
+    private int spawnX;
+    private int spawnY;
+
+    private Matrix matrix;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fillBoard(tablero);
-        startGame(tablero);
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero[i].length; j++) {
-                System.err.println(" "+tablero[i][j]+"");
+
+        /* ------------------------ DETECTAR LA DIRECCIÓN DE DELIZAR ------------------------ */
+
+        casilla=(GridLayout) findViewById(R.id.rejilla);
+        casilla.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this){
+            public void onSwipeTop(){
+                Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
+                matrix.HaciaArriba(tablero);
             }
-        }
+            public void onSwipeRight() {
+                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                matrix.HaciaLaDerecha(tablero);
+            }
+            public void onSwipeLeft() {
+                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                matrix.HaciaLaIzquierda(tablero);
+            }
+            public void onSwipeBottom() {
+                Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+                matrix.HaciaAbajo(tablero);
+            }
+        });
     }
 
     /*--CON ESTE MÉTODO LLENO LA MATRIZ DE CEROS, PARA QUE PUEDA OPERAR CON MÁS FACILIDAD QUE NO CON NULLS--*/
+
     public void fillBoard(int[][] tablero){
         for (int i=0; i<4; i++){
             for (int j=0; j<4;j++){
@@ -47,6 +68,7 @@ public class MainActivity extends AppCompatActivity{
             }
         }
     }
+    
     /*------------------------------------------------------------------------------------------------------*/
 
     /*---- GENERADORES DE COORDENADAS ALEATORIOS ----*/
@@ -54,6 +76,7 @@ public class MainActivity extends AppCompatActivity{
         double x = Math.random()*(0-3)+3;
         long x2 = Math.round(x);
         spawnX = Math.toIntExact(x2);
+        spawnY = Math.toIntExact(x2);
         return spawnX;
     }
 
