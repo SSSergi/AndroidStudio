@@ -7,6 +7,8 @@ public class Matrix{
     private int spawnEjeX;
     private int spawnEjeY;
 
+    // EN TEORÍA ESTOS DOS MÉTODOS direccion Y moverCasillas YA DEBERÍAN SER NECESARIOS
+    /*
     public int direccion(){
         Scanner sc=new Scanner(System.in);
         System.err.println("Introduce una dirección:");
@@ -27,7 +29,7 @@ public class Matrix{
         if(instruc==5){
             System.exit(0);
         }
-    }
+    }*/
 
     /* ------------------------ MOVIMIENTOS ------------------------ */
 
@@ -121,6 +123,7 @@ public class Matrix{
 
     /* ------------------------ MOVIMIENTOS END ------------------------ */
 
+    /*
     public void mostrarMatriz(int[][] tablero){
         for(int i=0; i<tablero.length; i++){
             for(int j=0; j<tablero[i].length; j++){
@@ -131,6 +134,7 @@ public class Matrix{
             System.out.println(" ");
         }
     }
+    */
 
     public void fillBoard(int[][] tablero){
         for(int i=0; i<tablero.length;i++){
