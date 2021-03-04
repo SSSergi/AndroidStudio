@@ -2,6 +2,7 @@ package com.example.a2048;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.widget.GridLayout;
@@ -39,77 +40,53 @@ public class Game extends AppCompatActivity {
 
         casillas=(GridLayout) findViewById(R.id.rejilla);
         casillas.setOnTouchListener(new OnSwipeTouchListener(Game.this){
+
             public void onSwipeTop(){
-                matrix.HaciaArriba(tabla, puntuacion);
-                matrix.spawn2(tabla);
-                mostrarTablero(tabla);
-                if(matrix.comprobarVictoria(tabla)==2048){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Venciste Alatriste!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    System.exit(0);
+                if (matrix.existeMovimientoHaciaArriba(tabla) != 0){
+                    puntuacion = matrix.HaciaArriba(tabla, puntuacion);
+                    matrix.spawn2(tabla);
+                    mostrarTablero(tabla);
+                    puntuar(puntuacion);
+                    historial.registrarJugada(tabla, registroJugadas);
+                    ganarGame(tabla);
+                    perderGame(tabla);
                 }
-                if(matrix.comprobarVictoria(tabla) < 2048 && matrix.comprobarDerrota(tabla)==0 && matrix.existeMovimiento(tabla)==0){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Perdiste Caratriste!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    System.exit(0);
-                }
-                historial.registrarJugada(tabla, registroJugadas);
-                marcoScore=(TextView) findViewById(R.id.score);
-                marcoScore.setText(Integer.toString(puntuacion));
             }
+
             public void onSwipeRight() {
-                matrix.HaciaLaDerecha(tabla, puntuacion);
-                matrix.spawn2(tabla);
-                mostrarTablero(tabla);
-                if(matrix.comprobarVictoria(tabla)==2048){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Venciste Alatriste!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    System.exit(0);
+                if (matrix.existeMovimientoHaciaDerecha(tabla) != 0){
+                    puntuacion = matrix.HaciaLaDerecha(tabla, puntuacion);
+                    matrix.spawn2(tabla);
+                    mostrarTablero(tabla);
+                    puntuar(puntuacion);
+                    historial.registrarJugada(tabla, registroJugadas);
+                    ganarGame(tabla);
+                    perderGame(tabla);
                 }
-                if(matrix.comprobarVictoria(tabla) < 2048 && matrix.comprobarDerrota(tabla)==0 && matrix.existeMovimiento(tabla)==0){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Perdiste Caratriste!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    System.exit(0);
-                }
-                historial.registrarJugada(tabla, registroJugadas);
-                marcoScore=(TextView) findViewById(R.id.score);
-                marcoScore.setText(Integer.toString(puntuacion));
             }
+
             public void onSwipeLeft() {
-                matrix.HaciaLaIzquierda(tabla, puntuacion);
-                matrix.spawn2(tabla);
-                mostrarTablero(tabla);
-                if(matrix.comprobarVictoria(tabla)==2048){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Venciste Alatriste!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    System.exit(0);
+                if (matrix.existeMovimientoHaciaIzquierda(tabla) != 0){
+                    puntuacion = matrix.HaciaLaIzquierda(tabla, puntuacion);
+                    matrix.spawn2(tabla);
+                    mostrarTablero(tabla);
+                    puntuar(puntuacion);
+                    historial.registrarJugada(tabla, registroJugadas);
+                    ganarGame(tabla);
+                    perderGame(tabla);
                 }
-                if(matrix.comprobarVictoria(tabla) < 2048 && matrix.comprobarDerrota(tabla)==0 && matrix.existeMovimiento(tabla)==0){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Perdiste Caratriste!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    System.exit(0);
-                }
-                historial.registrarJugada(tabla, registroJugadas);
-                marcoScore=(TextView) findViewById(R.id.score);
-                marcoScore.setText(Integer.toString(puntuacion));
             }
+
             public void onSwipeBottom() {
-                matrix.HaciaAbajo(tabla, puntuacion);
-                matrix.spawn2(tabla);
-                mostrarTablero(tabla);
-                if(matrix.comprobarVictoria(tabla)==2048){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Venciste Alatriste!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    System.exit(0);
+                if (matrix.existeMovimientoHaciaAbajo(tabla) != 0){
+                    puntuacion = matrix.HaciaAbajo(tabla, puntuacion);
+                    matrix.spawn2(tabla);
+                    mostrarTablero(tabla);
+                    puntuar(puntuacion);
+                    historial.registrarJugada(tabla, registroJugadas);
+                    ganarGame(tabla);
+                    perderGame(tabla);
                 }
-                if(matrix.comprobarVictoria(tabla) < 2048 && matrix.comprobarDerrota(tabla)==0 &&  matrix.existeMovimiento(tabla)==0){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Perdiste Caratriste!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    System.exit(0);
-                }
-                historial.registrarJugada(tabla, registroJugadas);
-                marcoScore=(TextView) findViewById(R.id.score);
-                marcoScore.setText(Integer.toString(puntuacion));
             }
         });
     }
@@ -164,10 +141,28 @@ public class Game extends AppCompatActivity {
         casilla=(TextView) findViewById(R.id.c16);
         casilla.setText(Integer.toString(tablero[3][3]));
     }
-/*
+
     public void puntuar(int puntos){
         marcoScore=(TextView) findViewById(R.id.score);
         marcoScore.setText(Integer.toString(puntos));
     }
-*/
+
+    public void perderGame(int [][] tabla){
+        if(matrix.comprobarVictoria(tabla) < 2048 && matrix.comprobarDerrota(tabla)==0 &&  matrix.existeMovimiento(tabla)==0){
+            Intent endGame = new Intent(Game.this, MainActivity.class);
+            startActivity(endGame);
+            Toast toast = Toast.makeText(getApplicationContext(), "Perdiste Caratriste!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    public  void ganarGame(int[][] tabla){
+        if(matrix.comprobarVictoria(tabla)==2048){
+            Intent endGame = new Intent(Game.this, MainActivity.class);
+            startActivity(endGame);
+            Toast toast = Toast.makeText(getApplicationContext(), "Venciste Alatriste!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
 }

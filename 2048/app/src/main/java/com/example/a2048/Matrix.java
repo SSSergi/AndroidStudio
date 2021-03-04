@@ -396,7 +396,59 @@ public class Matrix{
             }
 
         }
-        
+
+        return resultado;
+    }
+
+    public int existeMovimientoHaciaArriba(int [][] tabla) {
+        int resultado = 0;
+
+        for (int j = 0; j < 4; j++) {
+            for (int i = 3; i > 0 ; i--) {
+                if (tabla[i][j] != 0 && (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0)){
+                    resultado = resultado + 1;
+                }
+            }
+        }
+        return resultado;
+    }
+
+    public int existeMovimientoHaciaDerecha(int [][] tabla){
+        int resultado = 0;
+
+        for (int i = 0; i < 4 ; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (tabla[i][j] != 0 && (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0)){
+                    resultado = resultado + 1;
+                }
+            }
+        }
+        return resultado;
+    }
+
+    public int existeMovimientoHaciaAbajo(int [][] tabla){
+        int resultado = 0;
+
+        for (int j = 0; j < 4; j++) {
+            for (int i = 0; i <= 2; i++) {
+                if (tabla[i][j] != 0 && (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0)){
+                    resultado = resultado + 1;
+                }
+            }
+        }
+        return resultado;
+    }
+
+    public int existeMovimientoHaciaIzquierda(int [][] tabla){
+        int resultado = 0;
+
+        for (int i = 0; i < 4 ; i++) {
+            for (int j = 3; j > 0; j--) {
+                if (tabla[i][j] != 0 && (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0)){
+                    resultado = resultado + 1;
+                }
+            }
+        }
         return resultado;
     }
 
