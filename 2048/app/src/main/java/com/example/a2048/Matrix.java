@@ -1,39 +1,15 @@
 package com.example.a2048;
 
-import java.util.Scanner;
 
 public class Matrix{
 
     private int spawnEjeX;
     private int spawnEjeY;
 
-    // EN TEORÍA ESTOS DOS MÉTODOS direccion Y moverCasillas YA DEBERÍAN SER NECESARIOS
-    /*
-    public int direccion(){
-        Scanner sc=new Scanner(System.in);
-        System.err.println("Introduce una dirección:");
-        int res=sc.nextInt();
-        return res;
-    }
-
-    public void moverCasillas(int instruc, int[][] tablero){
-        if(instruc==1){
-            HaciaAbajo(tablero);
-        }
-        if(instruc==2){
-            HaciaLaDerecha(tablero);
-        }
-        if(instruc==4){
-            HaciaLaIzquierda(tablero);
-        }
-        if(instruc==5){
-            System.exit(0);
-        }
-    }*/
 
     /* ------------------------ MOVIMIENTOS ------------------------ */
 
-    public void HaciaArriba(int[][] tabla){
+    public int HaciaArriba(int[][] tabla, int puntuacion){
         for (int j = 0; j < 4; j++) {
             for (int i = 1; i < 4; i++) {
                 int k=i;
@@ -46,6 +22,7 @@ public class Matrix{
                             if(tabla[k][j]==tabla[k-1][j]){
                                 tabla[k-1][j]=tabla[k-1][j]*2;
                                 tabla[k][j]=0;
+                                puntuacion = puntuacion + tabla[k-1][j];
                             }
                         }
                     }
@@ -53,9 +30,10 @@ public class Matrix{
                 }
             }
         }
+        return puntuacion;
     }
 
-    public void HaciaAbajo(int[][] tabla){
+    public int HaciaAbajo(int[][] tabla, int puntuacion){
         for (int j = 0; j < 4; j++) {
             for (int i = 2; i >= 0; i--){
                 int k=i;
@@ -68,6 +46,7 @@ public class Matrix{
                             if(tabla[k][j] == tabla[k+1][j]){
                                 tabla[k+1][j] = tabla[k+1][j]*2;
                                 tabla[k][j] = 0;
+                                puntuacion = puntuacion + tabla[k+1][j];
                             }
                         }
                     }
@@ -75,9 +54,10 @@ public class Matrix{
                 }
             }
         }
+        return puntuacion;
     }
 
-    public void HaciaLaDerecha(int[][] tabla){
+    public int HaciaLaDerecha(int[][] tabla, int puntuacion){
         for (int i = 0; i < 4; i++) {
             for (int j = 2; j >=0; j--) {
                 int k=j;
@@ -90,6 +70,7 @@ public class Matrix{
                             if(tabla[i][k]==tabla[i][k+1]){
                                 tabla[i][k+1]=tabla[i][k+1]*2;
                                 tabla[i][k]=0;
+                                puntuacion = puntuacion + tabla[i][k+1];
                             }
                         }
                     }
@@ -97,9 +78,10 @@ public class Matrix{
                 }
             }
         }
+        return puntuacion;
     }
 
-    public void HaciaLaIzquierda(int[][] tabla){
+    public int HaciaLaIzquierda(int[][] tabla, int puntuacion){
         for (int i = 0; i < 4; i++) {
             for (int j = 1; j < 4; j++) {
                 int k=j;
@@ -112,6 +94,7 @@ public class Matrix{
                             if(tabla[i][k]==tabla[i][k-1]){
                                 tabla[i][k-1]=tabla[i][k-1]*2;
                                 tabla[i][k]=0;
+                                puntuacion = puntuacion + tabla[i][k-1];
                             }
                         }
                     }
@@ -119,22 +102,10 @@ public class Matrix{
                 }
             }
         }
+        return puntuacion;
     }
 
     /* ------------------------ MOVIMIENTOS END ------------------------ */
-
-    /*
-    public void mostrarMatriz(int[][] tablero){
-        for(int i=0; i<tablero.length; i++){
-            for(int j=0; j<tablero[i].length; j++){
-                System.out.print(tablero[i][j]);
-                System.out.print("  ");
-            }
-            if (i!=tablero.length-1) System.out.print("\t");
-            System.out.println(" ");
-        }
-    }
-    */
 
     public void fillBoard(int[][] tablero){
         for(int i=0; i<tablero.length;i++){
@@ -144,7 +115,290 @@ public class Matrix{
         }
     }
 
-    /* ---------------------------- GENERAR 2 ----------------------------  */
+    public int existeMovimiento(int[][] tabla){
+        int resultado=0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                /* ------------------------ ESQUINAS START ------------------------ */
+
+                // CASILLA 0 0 --SUPERIOR IZQUIERDA--
+                if (i==0 && j==0){
+
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ABAJO */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                }
+
+                // CASILLA 0 3 --SUPERIOR DERECHA--
+                if (i==0 && j==3){
+
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ABAJO */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                }
+
+                // CASILLA 3 0 --INFERIOR IZQUIERDA--
+                if (i==3 && j==0){
+
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                }
+
+                // CASILLA 3 3 --INFERIOR DERECHA--
+                if (i==0 && j==3){
+
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                }
+                /* ------------------------ ESQUINAS END ------------------------ */
+                /* ------------------------ LATERALES START ------------------------ */
+
+                // CASILLA 0 1 --SUPERIOR--
+                if (i==0 && j==1){
+
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ABAJO */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                }
+                // CASILLA 0 2 --SUPERIOR--
+                if (i==0 && j==2){
+
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ABAJO */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                }
+
+                // CASILLA 1 3 --DERECHA--
+                if (i==1 && j==3){
+
+                    /* CASILLA ABAJO */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                }
+                // CASILLA 2 3 --DERECHA--
+                if (i==2 && j==3){
+
+                    /* CASILLA ABAJO */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                }
+
+                // CASILLA 1 0 --IZQUIERDA--
+                if (i==1 && j==0){
+
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ABAJO */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                }
+                // CASILLA 2 0 --IZQUIERDA--
+                if (i==2 && j==3){
+
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ABAJO */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                }
+
+                // CASILLA 3 1 --INFERIOR--
+                if (i==3 && j==1){
+
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                }
+                // CASILLA 3 2 --INFERIOR--
+                if (i==3 && j==2){
+
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                }
+                /* ------------------------ LATERALES END ------------------------ */
+                /* ------------------------ CENTRALES START ------------------------ */
+
+                // CASILLA 1 1 --CENTRAL--
+                if (i==1 && j==1){
+
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA INFERIOR */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                }
+
+                // CASILLA 1 2 --CENTRAL--
+                if (i==1 && j==2){
+
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA INFERIOR */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                }
+
+                // CASILLA 2 1 --CENTRAL--
+                if (i==2 && j==1){
+
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA INFERIOR */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                }
+
+                // CASILLA 2 2 --CENTRAL--
+                if (i==2 && j==2){
+
+                    /* CASILLA ARRIBA */
+                    if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA DERECHA */
+                    if (tabla[i][j]==tabla[i][j+1] || tabla[i][j+1]==0){
+                        resultado++;
+                    }
+                    /* CASILLA INFERIOR */
+                    if (tabla[i][j]==tabla[i+1][j] || tabla[i+1][j]==0){
+                        resultado++;
+                    }
+                    /* CASILLA IZQUIERDA */
+                    if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
+                        resultado++;
+                    }
+                }
+                /* ------------------------ CENTRALES END ------------------------ */
+            }
+
+        }
+        
+        return resultado;
+    }
 
     public int comprobarDerrota(int[][] tabla){
         int casillasLibres=0;

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">2048</string>
+
+    <string name="dir1">top</string>
+
+    <string name="dir2">right</string>
+
+    <string name="dir3">bottom</string>
+
+    <string name="dir4">left</string>
 </resources>

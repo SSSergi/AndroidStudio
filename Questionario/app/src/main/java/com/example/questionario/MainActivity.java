@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void puntuar(int totalCorrectas){
         int nota=0;
-        nota=(100*totalCorrectas)/mQuestionBank.length;
+        nota = (100*totalCorrectas)/mQuestionBank.length;
 
         Toast toast = Toast.makeText(getApplicationContext(), "Has acertado el "+ nota +"% del questionario.", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP,0,250);
