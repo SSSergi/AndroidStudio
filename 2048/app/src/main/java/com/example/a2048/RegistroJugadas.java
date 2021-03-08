@@ -29,17 +29,4 @@ public class RegistroJugadas extends AppCompatActivity {
             jHistorial.add(tabla);
         }
     }
-
-    public int[] matrizToVector(int[][] tablero){
-        int[] v=new int[16];
-        int index=0;
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
-                int k=tablero[i][j];
-                v[index]=k;
-                index+=1;
-            }
-        }
-        return v;
-    }
 }

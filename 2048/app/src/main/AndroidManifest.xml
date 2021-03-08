@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".RegistroJugadas">
         </activity>
+        <activity android:name=".RegistroUsuario">
+        </activity>
     </application>
 
 </manifest>
