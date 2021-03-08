@@ -105,16 +105,11 @@ public class Matrix{
         return puntuacion;
     }
 
-    /* ------------------------ MOVIMIENTOS END ------------------------ */
+    /* ------------------------------------ MOVIMIENTOS END ------------------------------------ */
 
-    public void fillBoard(int[][] tablero){
-        for(int i=0; i<tablero.length;i++){
-            for(int j=0;j<tablero[i].length;j++){
-                tablero[i][j]=0;
-            }
-        }
-    }
+    /* ------------------------------- EXISTEN MOVIMIENTOS START ------------------------------- */
 
+    // MOVIMIENTOS EN GENERAL PARA CADA CASILLA RESPECTIVAMENTE
     public int existeMovimiento(int[][] tabla){
         int resultado=0;
         for (int i = 0; i < 4; i++) {
@@ -400,6 +395,8 @@ public class Matrix{
         return resultado;
     }
 
+    // ** ^ **
+    // ** | **
     public int existeMovimientoHaciaArriba(int [][] tabla) {
         int resultado = 0;
 
@@ -413,6 +410,7 @@ public class Matrix{
         return resultado;
     }
 
+    // ** --> **
     public int existeMovimientoHaciaDerecha(int [][] tabla){
         int resultado = 0;
 
@@ -426,6 +424,8 @@ public class Matrix{
         return resultado;
     }
 
+    // ** | **
+    // ** V **
     public int existeMovimientoHaciaAbajo(int [][] tabla){
         int resultado = 0;
 
@@ -439,6 +439,7 @@ public class Matrix{
         return resultado;
     }
 
+    // ** <-- **
     public int existeMovimientoHaciaIzquierda(int [][] tabla){
         int resultado = 0;
 
@@ -452,12 +453,16 @@ public class Matrix{
         return resultado;
     }
 
+    /* -------------------------------- EXISTEN MOVIMIENTOS END -------------------------------- */
+
+    /* -------------------------------- DERROTA Y VICTORIA START --------------------------------*/
+
     public int comprobarDerrota(int[][] tabla){
         int casillasLibres=0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++){
                 if(tabla[i][j] == 0){
-                    casillasLibres=casillasLibres+1;
+                    casillasLibres = casillasLibres + 1;
                 }
             }
         }
@@ -475,13 +480,17 @@ public class Matrix{
                 k++;
             }
         }
-        for(int i=1;i < listaValores.length;i++){
+        for(int i=0;i < listaValores.length;i++){
             if(listaValores[i] > maxNum){
                 maxNum = listaValores[i];
             }
         }
         return maxNum;
     }
+
+    /* --------------------------------- DERROTA Y VICTORIA END ---------------------------------*/
+
+    /* -------------------------------- CREACIÓN DE TABLERO START --------------------------------*/
 
     public int generatorX(){
         double x=Math.random()*(0-3)+3;
@@ -510,6 +519,16 @@ public class Matrix{
             spawn2(tabla);
         }
     }
+
+    public void fillBoard(int[][] tablero){
+        for(int i=0; i<tablero.length;i++){
+            for(int j=0;j<tablero[i].length;j++){
+                tablero[i][j]=0;
+            }
+        }
+    }
+
+    /* --------------------------------- CREACIÓN DE TABLERO END ---------------------------------*/
 
     public void startGame(int[][] tabla){
         spawn2(tabla);

@@ -7,20 +7,21 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/marco"
         android:orientation="vertical">
         <TextView
             android:id="@+id/startBut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start New Game"
+            android:text="  Start New Game  "
             android:layout_gravity="center"
             android:layout_marginTop="175dp"
             android:textSize="26dp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:background="@drawable/marco_2"/>
 
         <TextView
             android:id="@+id/ManageScores"
@@ -28,10 +29,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Manage Scores"
+            android:text="  Manage Scores  "
             android:textSize="26dp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:background="@drawable/marco_2"/>
 
         <TextView
             android:id="@+id/NewUser"
@@ -39,10 +41,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Create Player"
+            android:text="  Create Player  "
             android:textSize="26dp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:background="@drawable/marco_2"/>
 
         <TextView
             android:id="@+id/LogUser"
@@ -50,10 +53,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Log Player"
+            android:text="  Log Player  "
             android:textSize="26dp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:background="@drawable/marco_2"/>
 
         <TextView
             android:id="@+id/Salir"
@@ -61,9 +65,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Salir"
+            android:text="  Salir  "
             android:textSize="26dp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:background="@drawable/marco_2"/>
     </LinearLayout>
 </LinearLayout>

@@ -5,25 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Game">
+    tools:context=".Game"
+    android:background="@drawable/marco">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
 
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="80dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginRight="60dp"
-            android:text="0"
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:orientation="vertical"
             android:layout_gravity="right"
-            android:gravity="center"
-            android:background="@color/purple_200"/>
+            android:layout_marginRight="55dp">
+
+            <TextView
+                android:id="@+id/newGamebtn"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:text="  NEW GAME  "
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:background="@drawable/marco_3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/maxScore"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="10dp"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:background="@drawable/marco_2"/>
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:background="@drawable/marco_2"/>
+        </LinearLayout>
     </LinearLayout>
 
     <GridLayout
@@ -36,7 +77,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="30dp"
         android:background="#9E9E9E">
 
         <LinearLayout

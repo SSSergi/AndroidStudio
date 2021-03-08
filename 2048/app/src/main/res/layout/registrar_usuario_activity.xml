@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#774444"
+    android:background="@drawable/marco"
     tools:context=".RegistroUsuario">
 
     <TextView
@@ -27,9 +27,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre"
+            android:text="  Nombre  "
             android:layout_marginLeft="50dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:background="@drawable/marco_2"/>
 
         <EditText
             android:id="@+id/name_ID"
@@ -48,9 +49,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID"
+            android:text="  ID  "
             android:layout_marginLeft="50dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:background="@drawable/marco_2"/>
 
         <EditText
             android:id="@+id/IDUser_ID"
@@ -69,9 +71,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Country"
+            android:text="  Country  "
             android:layout_marginLeft="50dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:background="@drawable/marco_2"/>
 
         <EditText
             android:id="@+id/country_ID"
@@ -83,9 +86,10 @@
 
     <Button
         android:id="@+id/btnRegistro"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registrar Usuario"
         android:layout_marginTop="50dp"
+        android:layout_gravity="center"
         android:onClick="onClick"/>
 </LinearLayout>
