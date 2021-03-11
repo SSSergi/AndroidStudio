@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 public class ConexionSQLiteHelper extends SQLiteOpenHelper{
 
-    final String CREATE_TABLE_USUARIO = "CREATE TABLE Usuarios (userName TEXT, userID INTEGER, finalScore INTEGER, country TEXT)";
+    /* ESTA CLASE ES BÁSICAMENTE LA QUE CREA LA BASE DE DATOS, Y LA QUE HACE EL "CREATE TABLE USUARIO", LLAMANDO AL STRING CON LA ESTRUCTURA DEL CREATE, DESDE LA CLASE UTILITIES */
 
     public ConexionSQLiteHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

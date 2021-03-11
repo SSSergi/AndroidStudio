@@ -2,7 +2,10 @@ package com.example.a2048;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -17,13 +20,14 @@ public class Game extends AppCompatActivity {
 
     private TextView newGame;
     private TextView marcoScore;
+    private TextView maxScore;
     private TextView casilla;
     private GridLayout casillas;
     private Matrix matrix = new Matrix();
     private RegistroJugadas historial = new RegistroJugadas();
+    private ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this, "bd_usuarios", null, 1);
 
-    private int puntuacion = 0;
-    private int record;
+    protected int puntuacion;
 
     private ArrayList<int[][]> registroJugadas = new ArrayList<>();
     private int[][] tabla = new int[4][4];
@@ -32,6 +36,13 @@ public class Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
+
+        Cursor cursor = updateMaxScore();
+        if (cursor.moveToNext()){
+            maxScore=(TextView) findViewById(R.id.maxScore);
+            //Toast.makeText(getApplicationContext(), "score"+cursor.getString(3), Toast.LENGTH_SHORT).show();
+            maxScore.setText(Integer.toString(cursor.getInt(0)));
+        }
 
         /* ------------------------ BOTÓN DE REINICIAR GAME ------------------------ */
 
@@ -44,10 +55,11 @@ public class Game extends AppCompatActivity {
             }
         });
 
-
         /* ------------- CREAR TABLERO, LLENARLO DE 0 Y COLOCAR 2 PRIMERAS CASILLAS ------------- */
         matrix.fillBoard(tabla);
         matrix.startGame(tabla);
+        tabla[0][0]=1024;
+        tabla[0][1]=1024;
         mostrarTablero(tabla);
         historial.iniciarRegistro(tabla, registroJugadas);
 
@@ -56,58 +68,50 @@ public class Game extends AppCompatActivity {
         casillas=(GridLayout) findViewById(R.id.rejilla);
         casillas.setOnTouchListener(new OnSwipeTouchListener(Game.this){
             public void onSwipeTop(){
-                if (matrix.existeMovimiento(tabla) != 0){
-                    if (matrix.existeMovimientoHaciaArriba(tabla) != 0){
-                        puntuacion = matrix.HaciaArriba(tabla, puntuacion);
-                        matrix.spawn2(tabla);
-                        mostrarTablero(tabla);
-                        puntuar(puntuacion);
-                        historial.registrarJugada(tabla, registroJugadas);
-                        ganarGame(tabla);
-                        perderGame(tabla);
-                    }
+                if (matrix.existeMovimientoHaciaArriba(tabla) != 0){
+                    puntuacion = matrix.HaciaArriba(tabla, puntuacion);
+                    matrix.spawn2(tabla);
+                    mostrarTablero(tabla);
+                    puntuar(puntuacion);
+                    historial.registrarJugada(tabla, registroJugadas);
+                    ganarGame(tabla);
+                    perderGame(tabla);
                 }
             }
 
             public void onSwipeRight() {
-                if (matrix.existeMovimiento(tabla) != 0){
-                    if (matrix.existeMovimientoHaciaDerecha(tabla) != 0){
-                        puntuacion = matrix.HaciaLaDerecha(tabla, puntuacion);
-                        matrix.spawn2(tabla);
-                        mostrarTablero(tabla);
-                        puntuar(puntuacion);
-                        historial.registrarJugada(tabla, registroJugadas);
-                        ganarGame(tabla);
-                        perderGame(tabla);
-                    }
+                if (matrix.existeMovimientoHaciaDerecha(tabla) != 0){
+                    puntuacion = matrix.HaciaLaDerecha(tabla, puntuacion);
+                    matrix.spawn2(tabla);
+                    mostrarTablero(tabla);
+                    puntuar(puntuacion);
+                    historial.registrarJugada(tabla, registroJugadas);
+                    ganarGame(tabla);
+                    perderGame(tabla);
                 }
             }
 
             public void onSwipeLeft() {
-                if (matrix.existeMovimiento(tabla) != 0){
-                    if (matrix.existeMovimientoHaciaIzquierda(tabla) != 0){
-                        puntuacion = matrix.HaciaLaIzquierda(tabla, puntuacion);
-                        matrix.spawn2(tabla);
-                        mostrarTablero(tabla);
-                        puntuar(puntuacion);
-                        historial.registrarJugada(tabla, registroJugadas);
-                        ganarGame(tabla);
-                        perderGame(tabla);
-                    }
+                if (matrix.existeMovimientoHaciaIzquierda(tabla) != 0){
+                    puntuacion = matrix.HaciaLaIzquierda(tabla, puntuacion);
+                    matrix.spawn2(tabla);
+                    mostrarTablero(tabla);
+                    puntuar(puntuacion);
+                    historial.registrarJugada(tabla, registroJugadas);
+                    ganarGame(tabla);
+                    perderGame(tabla);
                 }
             }
 
             public void onSwipeBottom() {
-                if (matrix.existeMovimiento(tabla) != 0){
-                    if (matrix.existeMovimientoHaciaAbajo(tabla) != 0){
-                        puntuacion = matrix.HaciaAbajo(tabla, puntuacion);
-                        matrix.spawn2(tabla);
-                        mostrarTablero(tabla);
-                        puntuar(puntuacion);
-                        historial.registrarJugada(tabla, registroJugadas);
-                        ganarGame(tabla);
-                        perderGame(tabla);
-                    }
+                if (matrix.existeMovimientoHaciaAbajo(tabla) != 0){
+                    puntuacion = matrix.HaciaAbajo(tabla, puntuacion);
+                    matrix.spawn2(tabla);
+                    mostrarTablero(tabla);
+                    puntuar(puntuacion);
+                    historial.registrarJugada(tabla, registroJugadas);
+                    ganarGame(tabla);
+                    perderGame(tabla);
                 }
             }
         });
@@ -171,20 +175,29 @@ public class Game extends AppCompatActivity {
 
     public void perderGame(int [][] tabla){
         if(matrix.comprobarVictoria(tabla) != 2048 && matrix.comprobarDerrota(tabla)==0 && matrix.existeMovimiento(tabla)==0){
-            Intent LostGame = new Intent(Game.this, MainActivity.class);
-            startActivity(LostGame);
             Toast toast = Toast.makeText(getApplicationContext(), "Perdiste Caratriste!", Toast.LENGTH_SHORT);
             toast.show();
+            openDialog();
         }
     }
 
     public  void ganarGame(int[][] tabla){
         if(matrix.comprobarVictoria(tabla)==2048){
-            Intent WinGame = new Intent(Game.this, MainActivity.class);
-            startActivity(WinGame);
             Toast toast = Toast.makeText(getApplicationContext(), "Venciste Alatriste!", Toast.LENGTH_SHORT);
             toast.show();
+            openDialog();
         }
     }
 
+    public void openDialog(){
+        DialogEndGame dialog = new DialogEndGame();
+        dialog.show(getSupportFragmentManager(), "end_game_dialog");
+    }
+
+    public Cursor updateMaxScore(){
+        SQLiteDatabase db = conn.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select finalScore from usuario", null);
+
+        return cursor;
+    }
 }

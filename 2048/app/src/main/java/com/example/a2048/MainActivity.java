@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView start;
-    private TextView newUser;
+    private TextView salirbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -30,12 +30,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        newUser = (TextView) findViewById(R.id.NewUser);
-        newUser.setOnClickListener(new View.OnClickListener() {
+        salirbtn = (TextView) findViewById(R.id.Salir);
+        salirbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCreatePlayer = new Intent(MainActivity.this, RegistroUsuario.class);
-                startActivity(intentCreatePlayer);
+                System.exit(0);
             }
         });
     }

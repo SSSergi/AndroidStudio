@@ -156,7 +156,7 @@ public class Matrix{
                 }
 
                 // CASILLA 3 3 --INFERIOR DERECHA--
-                if (i==0 && j==3){
+                if (i==3 && j==3){
 
                     /* CASILLA IZQUIERDA */
                     if (tabla[i][j]==tabla[i][j-1] || tabla[i][j-1]==0){
@@ -253,7 +253,7 @@ public class Matrix{
                     }
                 }
                 // CASILLA 2 0 --IZQUIERDA--
-                if (i==2 && j==3){
+                if (i==2 && j==0){
 
                     /* CASILLA ARRIBA */
                     if (tabla[i][j]==tabla[i-1][j] || tabla[i-1][j]==0){
@@ -391,7 +391,6 @@ public class Matrix{
             }
 
         }
-
         return resultado;
     }
 

@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="  Start New Game  "
             android:layout_gravity="center"
-            android:layout_marginTop="175dp"
+            android:layout_marginTop="275dp"
             android:textSize="26dp"
             android:textStyle="bold"
             android:textColor="@color/white"
@@ -30,30 +30,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:text="  Manage Scores  "
-            android:textSize="26dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/marco_2"/>
-
-        <TextView
-            android:id="@+id/NewUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:text="  Create Player  "
-            android:textSize="26dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/marco_2"/>
-
-        <TextView
-            android:id="@+id/LogUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:text="  Log Player  "
             android:textSize="26dp"
             android:textStyle="bold"
             android:textColor="@color/white"
