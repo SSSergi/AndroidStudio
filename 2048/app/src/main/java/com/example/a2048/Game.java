@@ -36,13 +36,14 @@ public class Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
-
+/*
         Cursor cursor = updateMaxScore();
         if (cursor.moveToNext()){
+            cursor.moveToFirst();
             maxScore=(TextView) findViewById(R.id.maxScore);
-            maxScore.setText(Integer.toString(cursor.getInt(0)));
+            maxScore.setText(Integer.toString(cursor.getInt(2)));
         }
-
+*/
         /* ------------------------ BOTÓN DE REINICIAR GAME ------------------------ */
 
         newGame = (TextView) findViewById(R.id.newGamebtn);

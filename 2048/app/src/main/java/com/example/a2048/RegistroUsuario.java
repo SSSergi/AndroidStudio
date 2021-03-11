@@ -53,6 +53,6 @@ public class RegistroUsuario extends AppCompatActivity {
         values.put(Utilities.USER_ID, idUser);
         values.put(Utilities.COUNTRY, country.getText().toString());
         values.put(Utilities.FINAL_SCORE, puntuacion);
-        db.insert(TABLA_USUARIO, null, values);
+        db.insert(Utilities.TABLA_USUARIO, null, values);
     }
 }
