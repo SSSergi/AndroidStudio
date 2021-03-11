@@ -40,7 +40,6 @@ public class Game extends AppCompatActivity {
         Cursor cursor = updateMaxScore();
         if (cursor.moveToNext()){
             maxScore=(TextView) findViewById(R.id.maxScore);
-            //Toast.makeText(getApplicationContext(), "score"+cursor.getString(3), Toast.LENGTH_SHORT).show();
             maxScore.setText(Integer.toString(cursor.getInt(0)));
         }
 
@@ -196,10 +195,10 @@ public class Game extends AppCompatActivity {
 
     public Cursor updateMaxScore(){
         SQLiteDatabase db = conn.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select finalScore from usuario", null);
+        Cursor cursor = db.rawQuery("select MAX(finalScore) from usuario", null);
 
         return cursor;
     }
 
-    
+
 }
